@@ -1,8 +1,8 @@
 import java.util.*;
-public class currencyConverter {
+public class CurrencyConverter {
 
     public static void main(String[] args){
-        
+
     }
 
 }
