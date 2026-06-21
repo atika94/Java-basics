@@ -11,10 +11,28 @@ class CurrencyConverter {
         System.out.println("TO :");
         String toCurrency = sc.next().toUpperCase();
 
+
+        try {
+            double rate = fetchExchangeRate(fromCurrency, toCurrency);
+            
+            if (rate == -1) {
+                System.out.println("\nError: Could not retrieve valid exchange rates. Check currency codes.");
+            } else {
+                double convertedAmount = amount * rate;
+                System.out.printf("\nResult: %.2f %s = %.2f %s\n", amount, fromCurrency, convertedAmount, toCurrency);
+                System.out.printf("(Live Exchange Rate: 1 %s = %.4f %s)\n", fromCurrency, rate, toCurrency);
+            }
+        } catch (Exception e) {
+            System.out.println("\nNetwork/Connection Error: " + e.getMessage());
+        }
+
+        sc.close();
     }
 
+
+
     //Connects to the Frankfurter API, requests data, and parses the rate.
-    private static exchangeRateFetch(String from , String to){
+    private static exchangeRateFetch(String from , String to) throws Exception{
         // URL construction
         String urlString = "https://api.frankfurter.dev/v1/latest?base=" + from + "&symbols=" + to;
         URL url = new URL(urlString);
@@ -42,6 +60,22 @@ class CurrencyConverter {
 
         // Convert response data to a clean string
         String jsonResponse = responseText.toString();
+        // Pure Java String Parsing Twist: 
+        // We look for the position of our target currency inside the JSON string 
+        // Example slice: "rates":{"EUR":0.9334}
+        String searchTarget = "\"" + to + "\":";
+        int targetIndex = jsonResponse.indexOf(searchTarget);
+        if (targetIndex == -1) {
+            return -1; // Target currency key not found in response
+        }
+
+        // Cut the string starting immediately after the ":" sign up to the closing bracket "}"
+        int startIndex = targetIndex + searchTarget.length();
+        int endIndex = jsonResponse.indexOf("}", startIndex);
+        String rateString = jsonResponse.substring(startIndex, endIndex).trim();
+
+        // Convert raw string text back into a mathematical double
+        return Double.parseDouble(rateString);
     }
 
 }
