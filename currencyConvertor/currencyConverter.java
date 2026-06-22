@@ -1,4 +1,9 @@
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Scanner;
+
 class CurrencyConverter {
 
     public static void main(String[] args){
@@ -11,8 +16,8 @@ class CurrencyConverter {
         System.out.println("TO :");
         String toCurrency = sc.next().toUpperCase();
 
-
         try {
+            // FIXED: Matches the exact name of the method below now
             double rate = fetchExchangeRate(fromCurrency, toCurrency);
             
             if (rate == -1) {
@@ -29,17 +34,16 @@ class CurrencyConverter {
         sc.close();
     }
 
-
-
-    //Connects to the Frankfurter API, requests data, and parses the rate.
-    private static exchangeRateFetch(String from , String to) throws Exception{
+    // FIXED: Changed name to fetchExchangeRate and added the 'double' return type
+    private static double fetchExchangeRate(String from , String to) throws Exception {
         // URL construction
-        String urlString = "https://api.frankfurter.dev/v1/latest?base=" + from + "&symbols=" + to;
+        String urlString = "https://open.er-api.com/v6/latest/" + from;
         URL url = new URL(urlString);
+        
         // Open HTTP connection
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
-        connection.setConnectTimeout(5000); // Stop waiting after 5 seconds if connection is dead
+        connection.setConnectTimeout(5000); 
         connection.setReadTimeout(5000);
         int responseCode = connection.getResponseCode();
 
@@ -60,13 +64,11 @@ class CurrencyConverter {
 
         // Convert response data to a clean string
         String jsonResponse = responseText.toString();
-        // Pure Java String Parsing Twist: 
-        // We look for the position of our target currency inside the JSON string 
-        // Example slice: "rates":{"EUR":0.9334}
+        
         String searchTarget = "\"" + to + "\":";
         int targetIndex = jsonResponse.indexOf(searchTarget);
         if (targetIndex == -1) {
-            return -1; // Target currency key not found in response
+            return -1; 
         }
 
         // Cut the string starting immediately after the ":" sign up to the closing bracket "}"
@@ -77,5 +79,4 @@ class CurrencyConverter {
         // Convert raw string text back into a mathematical double
         return Double.parseDouble(rateString);
     }
-
 }
