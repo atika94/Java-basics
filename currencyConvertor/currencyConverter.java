@@ -17,7 +17,6 @@ class CurrencyConverter {
         String toCurrency = sc.next().toUpperCase();
 
         try {
-            // FIXED: Matches the exact name of the method below now
             double rate = fetchExchangeRate(fromCurrency, toCurrency);
             
             if (rate == -1) {
@@ -34,9 +33,8 @@ class CurrencyConverter {
         sc.close();
     }
 
-    // FIXED: Changed name to fetchExchangeRate and added the 'double' return type
     private static double fetchExchangeRate(String from , String to) throws Exception {
-        // URL construction
+        // FIXED: Changed 'USDString' back to standard 'String'
         String urlString = "https://open.er-api.com/v6/latest/" + from;
         URL url = new URL(urlString);
         
@@ -71,9 +69,11 @@ class CurrencyConverter {
             return -1; 
         }
 
-        // Cut the string starting immediately after the ":" sign up to the closing bracket "}"
         int startIndex = targetIndex + searchTarget.length();
-        int endIndex = jsonResponse.indexOf("}", startIndex);
+        
+        // FIXED: Changed "}" to "," to match how this new API structures data
+        int endIndex = jsonResponse.indexOf(",", startIndex); 
+        
         String rateString = jsonResponse.substring(startIndex, endIndex).trim();
 
         // Convert raw string text back into a mathematical double
