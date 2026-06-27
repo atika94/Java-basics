@@ -18,7 +18,6 @@ public class Product {
                 this.quantity = quantity;
                 this.threshold = threshold;
                 this.supplierName = supplierName;
-
                }
     }
 }
