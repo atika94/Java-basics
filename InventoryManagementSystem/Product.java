@@ -67,7 +67,7 @@ public class Product {
 
             }
 
-            @
+            @Override
         public String toString() {
             return "ID: " + id +
            "\nName: " + name +
@@ -78,14 +78,7 @@ public class Product {
         }
 
         public static void main(String[] args){            
-            Product obj = new Product(
-                    101,
-                    "Laptop",
-                    85000,
-                    15,
-                    5,
-                    "ABC Traders"
-            );           
+            Product obj = new Product(101, "Laptop", 85000, 15, 5, "ABC Traders");           
              System.out.println(obj.toString()); 
         }
 
