@@ -78,8 +78,17 @@ public class Product {
         }
 
         public static void main(String[] args){            
-            Product obj = new Product(101, "Laptop", 85000, 15, 5, "ABC Traders");           
-             System.out.println(obj.toString()); 
+            Product obj1 = new Product(101, "Laptop", 85000, 15, 5, "ABC Traders");   
+            Product obj2 = new Product(102, "Mouse", 1200, 30, 10, "Logitech");
+            Product obj3 = new Product( 103, "Keyboard", 3500, 20, 5, "HP");
+
+            System.out.println("                 Product 1");
+            System.out.println(obj1.toString()); 
+            System.out.println("                 Product 2");
+            System.out.println(obj2.toString()); 
+            System.out.println("                 Product 3");
+            System.out.println(obj3.toString()); 
+
         }
 
 }
