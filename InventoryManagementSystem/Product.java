@@ -64,7 +64,6 @@ public class Product {
                 this.threshold = threshold;
                 this.supplierName = supplierName;
 
-
             }
 
             @Override
