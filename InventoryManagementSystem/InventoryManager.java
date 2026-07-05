@@ -18,6 +18,15 @@ public class InventoryManager{
 
    public void displayProducts() {
 
+     for(Product product : inventory) {
+         System.out.println("Product ID: " + product.getId());
+         System.out.println("Product Name: " + product.getName());
+         System.out.println("Product Price: " + product.getPrice());
+         System.out.println("Product Quantity: " + product.getQuantity());
+         System.out.println("Product Threshold: " + product.getThreshold());
+         System.out.println("Supplier Name: " + product.getSupplierName());
+         System.out.println("-----------------------------");
+     }
    }
 
 
