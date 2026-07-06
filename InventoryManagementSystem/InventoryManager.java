@@ -1,43 +1,82 @@
 import java.util.ArrayList;
 
 public class InventoryManager{
-// implementing the inventory manager using arraylist
-// Stores all products in the inventory
-   private ArrayList<Product> inventory;
+  // implementing the inventory manager using arraylist
+  // Stores all products in the inventory
+  private ArrayList<Product> inventory;
 
-   //constructor
-   public InventoryManager(){
-        inventory = new ArrayList<>();
-   }
+  //constructor
+  public InventoryManager(){
 
-   public void addProduct(Product product) {
-
-     inventory.add(product);
-   }
+    inventory = new ArrayList<>();
+    
+  }
 
 
-   public void displayProducts() {
 
-     for(Product product : inventory) {
-         System.out.println("Product ID: " + product.getId());
-         System.out.println("Product Name: " + product.getName());
-         System.out.println("Product Price: " + product.getPrice());
-         System.out.println("Product Quantity: " + product.getQuantity());
-         System.out.println("Product Threshold: " + product.getThreshold());
-         System.out.println("Supplier Name: " + product.getSupplierName());
-         System.out.println("-----------------------------");
-     }
-   }
+   //Method to add the produt as an object
+  public void addProduct(Product product) {
+
+    inventory.add(product);
+
+  }
 
 
-   public static void main(String[] args) {
-        InventoryManager manager = new InventoryManager();
-        Product laptop = new Product(101, "DELL", 50000, 5, 3, "YZ Traders");
-        Product mouse = new Product(102, "Logitech", 1500, 10, 5, "ABC Traders");
-        Product keyboard = new Product(103, "HP", 3500, 20, 5, "XYZ Suppliers");
-        manager.addProduct(laptop);
-        manager.addProduct(mouse);
-        manager.addProduct(keyboard);
-        manager.displayProducts();
-   }
+
+   //Method to display Product
+  public void displayProducts() {
+
+    if (inventory.isEmpty()) {
+      System.out.println("No products available.");
+       return;
+    }
+
+    for(Product product : inventory) {
+      System.out.println("Product ID: " + product.getId());
+      System.out.println("Product Name: " + product.getName());
+      System.out.println("Product Price: " + product.getPrice());
+      System.out.println("Product Quantity: " + product.getQuantity());
+      System.out.println("Product Threshold: " + product.getThreshold());
+      System.out.println("Supplier Name: " + product.getSupplierName());
+      System.out.println("-----------------------------");
+    }
+
+  }
+
+
+   
+  // For Searching Product 
+  public Product searchProduct(int id) {
+
+    for(Product product : inventory) {
+      if(product.getId() == id) {
+        return product;
+      }
+    }
+    return null;
+
+  }
+
+
+
+   //Update Product
+  public boolean updateProduct(int id, double newprice, int newquantity, int newthreshold, String newsupplier){
+
+    Product product = searchProduct(id);
+
+    if (product == null) {
+      return false;
+    }
+
+    else {
+      product.setPrice(newprice);
+      product.setQuantity(newquantity);
+      product.setThreshold(newthreshold);
+      product.setSupplierName(newsupplier);
+
+      return true;
+    }
+
+  }
+  
 }
