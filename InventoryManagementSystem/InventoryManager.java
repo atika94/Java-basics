@@ -22,6 +22,18 @@ public class InventoryManager{
   }
 
 
+  //Method to remove the product from the inventory
+  public boolean removeProduct(int id) {
+
+    Product product = searchProduct(id);
+
+    if (product == null) {
+      return false;
+    }
+
+    inventory.remove(product);
+    return true;
+  }
 
    //Method to display Product
   public void displayProducts() {

@@ -27,9 +27,23 @@ public class Main {
 
         if (manager.updateProduct(102, 1200, 15, 7, "New Supplier")) {
             System.out.println("Product updated successfully.");
-        } else {
+        } 
+        else {
             System.out.println("Product not found.");
         }
+
+
+        
+        System.out.println("\n===== Remove Product =====");
+
+        if (manager.removeProduct(104)) {
+            System.out.println("Product removed successfully.");
+        } 
+        else {
+            System.out.println("Product not found.");
+        }
+
+
 
         System.out.println("\n===== Updated Inventory =====");
 
