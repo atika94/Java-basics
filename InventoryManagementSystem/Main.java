@@ -48,5 +48,8 @@ public class Main {
         System.out.println("\n===== Updated Inventory =====");
 
         manager.displayProducts();
+
+        System.out.println("\n===== Low Stock Products =====");
+        manager.displayLowStock();
     }
 }

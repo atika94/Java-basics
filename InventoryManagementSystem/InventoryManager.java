@@ -35,6 +35,38 @@ public class InventoryManager{
     return true;
   }
 
+
+
+
+
+  public void displayLowStock(){
+    
+    boolean lowStockFound = false;
+
+    for(Product product : inventory) {
+      if(product.getQuantity() < product.getThreshold()) {
+        System.out.println("Product ID: " + product.getId());
+        System.out.println("Product Name: " + product.getName());
+        System.out.println("Product Price: " + product.getPrice());
+        System.out.println("Product Quantity: " + product.getQuantity());
+        System.out.println("Product Threshold: " + product.getThreshold());
+        System.out.println("Supplier Name: " + product.getSupplierName());
+        System.out.println("-----------------------------");
+        lowStockFound = true;
+      }
+    }
+
+    if (!lowStockFound) {
+      System.out.println("No products are below the threshold.");
+    }
+  }
+
+
+
+
+
+
+  
    //Method to display Product
   public void displayProducts() {
 
