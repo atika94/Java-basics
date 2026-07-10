@@ -97,6 +97,29 @@ public class InventoryManager{
   }
 
 
+  public void generateRestockReport(){
+
+    for (Product product : inventory) {
+
+      if (product.getQuantity() <= product.getThreshold()) {
+        if(product.getQuantity() == 0){
+          System.out.println("Product ID: " + product.getId() + " is out of stock. Please restock immediately.");
+          int orderQuantity = product.getThreshold() - product.getQuantity();
+          System.out.println("Recommended order quantity: " + orderQuantity);
+        }
+        else{
+          System.out.println("Product ID: " + product.getId() + " is low on stock. Current quantity: " + product.getQuantity() + ". Please restock.");
+          int orderQuantity = product.getThreshold() - product.getQuantity();
+          System.out.println("Recommended order quantity: " + orderQuantity);
+        }
+      }
+      else {
+        System.out.println("Product ID: " + product.getId() + " is sufficiently stocked. Current quantity: " + product.getQuantity() + ".");
+      }
+    }
+
+  }
+
 
    //Update Product
   public boolean updateProduct(int id, double newprice, int newquantity, int newthreshold, String newsupplier){
