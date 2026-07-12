@@ -97,28 +97,49 @@ public class InventoryManager{
   }
 
 
-  public void generateRestockReport(){
+  // Method to generate restock report
+
+  public void generateRestockReport() {
+
+    boolean restockNeeded = false;
+
+    System.out.println("\n========== RESTOCK REPORT ==========");
 
     for (Product product : inventory) {
 
-      if (product.getQuantity() <= product.getThreshold()) {
-        if(product.getQuantity() == 0){
-          System.out.println("Product ID: " + product.getId() + " is out of stock. Please restock immediately.");
-          int orderQuantity = product.getThreshold() - product.getQuantity();
-          System.out.println("Recommended order quantity: " + orderQuantity);
+        if (product.getQuantity() <= product.getThreshold()) {
+
+            restockNeeded = true;
+
+            int orderQuantity = product.getThreshold() - product.getQuantity();
+
+            String status;
+
+            if (product.getQuantity() == 0) {
+                status = "OUT OF STOCK";
+            } else {
+                status = "LOW STOCK";
+            }
+
+            System.out.println("--------------------------------------");
+            System.out.println("Product ID        : " + product.getId());
+            System.out.println("Product Name      : " + product.getName());
+            System.out.println("Status            : " + status);
+            System.out.println("Current Quantity  : " + product.getQuantity());
+            System.out.println("Threshold         : " + product.getThreshold());
+            System.out.println("Suggested Order   : " + orderQuantity + " units");
         }
-        else{
-          System.out.println("Product ID: " + product.getId() + " is low on stock. Current quantity: " + product.getQuantity() + ". Please restock.");
-          int orderQuantity = product.getThreshold() - product.getQuantity();
-          System.out.println("Recommended order quantity: " + orderQuantity);
-        }
-      }
-      else {
-        System.out.println("Product ID: " + product.getId() + " is sufficiently stocked. Current quantity: " + product.getQuantity() + ".");
-      }
     }
 
+    if (!restockNeeded) {
+        System.out.println("All products are sufficiently stocked.");
+    }
+
+    System.out.println("======================================");
   }
+
+
+
 
 
    //Update Product
