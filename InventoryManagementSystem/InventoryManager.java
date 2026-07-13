@@ -192,7 +192,7 @@ public class InventoryManager{
   // Method to save inventory data to a CSV file
 
   public void saveToCSV(String filename) {
-   try ( FileWriter writer = new FileWriter("products.csv")){
+   try ( FileWriter writer = new FileWriter(filename)){
     
    }
    catch (IOException e) {
