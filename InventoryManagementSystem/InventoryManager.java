@@ -188,11 +188,16 @@ public class InventoryManager{
 
 
 
+
   // file handling  saving and loading data from csv file
   // Method to save inventory data to a CSV file
 
   public void saveToCSV(String filename) {
    try ( FileWriter writer = new FileWriter(filename)){
+    for(Product product : inventory){
+      String line = product.getId() + "," + product.getName() + "," + product.getPrice() + "," + product.getQuantity() + "," + product.getThreshold() + "," + product.getSupplierName() + "\n";
+      writer.write(line + "\n" );
+    }
     
    }
    catch (IOException e) {
