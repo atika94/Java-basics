@@ -39,6 +39,8 @@ public class InventoryManager{
 
 
 
+
+
   public void displayLowStock(){
     
     boolean lowStockFound = false;
@@ -83,6 +85,11 @@ public class InventoryManager{
   }
 
 
+
+
+
+
+
    
   // For Searching Product 
   public Product searchProduct(int id) {
@@ -97,6 +104,12 @@ public class InventoryManager{
   }
 
 
+
+
+
+
+
+
   // Method to generate restock report
 
   public void generateRestockReport() {
@@ -107,27 +120,27 @@ public class InventoryManager{
 
     for (Product product : inventory) {
 
-        if (product.getQuantity() <= product.getThreshold()) {
+      if (product.getQuantity() <= product.getThreshold()) {
 
-            restockNeeded = true;
+        restockNeeded = true;
 
-            int orderQuantity = product.getThreshold() - product.getQuantity();
+        int orderQuantity = product.getThreshold() - product.getQuantity();
 
-            String status;
+        String status;
 
-            if (product.getQuantity() == 0) {
-                status = "OUT OF STOCK";
-            } else {
-                status = "LOW STOCK";
-            }
-
-            System.out.println("--------------------------------------");
-            System.out.println("Product ID        : " + product.getId());
-            System.out.println("Product Name      : " + product.getName());
-            System.out.println("Status            : " + status);
-            System.out.println("Current Quantity  : " + product.getQuantity());
-            System.out.println("Threshold         : " + product.getThreshold());
-            System.out.println("Suggested Order   : " + orderQuantity + " units");
+        if (product.getQuantity() == 0) {
+          status = "OUT OF STOCK";
+        } 
+        else {
+          status = "LOW STOCK";
+        }
+        System.out.println("--------------------------------------");
+        System.out.println("Product ID        : " + product.getId());
+        System.out.println("Product Name      : " + product.getName());
+        System.out.println("Status            : " + status);
+        System.out.println("Current Quantity  : " + product.getQuantity());
+        System.out.println("Threshold         : " + product.getThreshold());
+        System.out.println("Suggested Order   : " + orderQuantity + " units");
         }
     }
 
@@ -140,6 +153,11 @@ public class InventoryManager{
 
 
 
+
+
+
+
+  
 
 
    //Update Product

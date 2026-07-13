@@ -51,5 +51,8 @@ public class Main {
 
         System.out.println("\n===== Low Stock Products =====");
         manager.displayLowStock();
+
+        System.out.println("\n===== Stock report =====");
+        manager.generateRestockReport();
     }
 }
