@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class InventoryManager{
   // implementing the inventory manager using arraylist
@@ -157,7 +159,7 @@ public class InventoryManager{
 
 
 
-  
+
 
 
    //Update Product
@@ -179,5 +181,23 @@ public class InventoryManager{
     }
 
   }
-  
+
+
+
+
+
+
+
+  // file handling  saving and loading data from csv file
+  // Method to save inventory data to a CSV file
+
+  public void saveToCSV(String filename) {
+   try ( FileWriter writer = new FileWriter("products.csv")){
+    
+   }
+   catch (IOException e) {
+        System.out.println("Error saving file.");
+    }
+  }
+
 }

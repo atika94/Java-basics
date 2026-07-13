@@ -54,5 +54,8 @@ public class Main {
 
         System.out.println("\n===== Stock report =====");
         manager.generateRestockReport();
+
+        System.out.println("\n===== Saving Inventory to File =====");
+        manager.saveToCSV("products.csv");
     }
 }
