@@ -201,7 +201,7 @@ public class InventoryManager{
     
    }
    catch (IOException e) {
-        System.out.println("Error saving file.");
+        System.out.println("Error saving file." + e.getMessage());
     }
   }
 
