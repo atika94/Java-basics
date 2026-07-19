@@ -57,5 +57,8 @@ public class Main {
 
         System.out.println("\n===== Saving Inventory to File =====");
         manager.saveToCSV("products.csv");
+
+        System.out.println("\n===== Loading Inventory from File =====");
+        manager.loadFromCSV("products.csv");
     }
 }

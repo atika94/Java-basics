@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public class InventoryManager{
   // implementing the inventory manager using arraylist
@@ -198,11 +200,38 @@ public class InventoryManager{
       String line = product.getId() + "," + product.getName() + "," + product.getPrice() + "," + product.getQuantity() + "," + product.getThreshold() + "," + product.getSupplierName() + "\n";
       writer.write(line + "\n" );
     }
-    
+      System.out.println("Inventory saved successfully to " + filename);
+
    }
    catch (IOException e) {
         System.out.println("Error saving file." + e.getMessage());
     }
   }
+
+
+  public void loadFromCSV(String filename) {
+    try(BufferedReader reader = new BufferedReader(new FileReader(filename))){
+      inventory.clear(); // Clear existing inventory before loading new data
+      String line;
+      while((line = reader.readLine()) != null){
+        if (line.trim().isEmpty()) {
+          continue; // Skip empty lines
+        }
+        String[] data = line.split(",");
+        int id = Integer.parseInt(data[0]);
+        double price = Double.parseDouble(data[2]);
+        int quantity = Integer.parseInt(data[3]);
+        int threshold = Integer.parseInt(data[4]);
+        String supplierName = data[5];
+        String name = data[1];
+        Product product = new Product(id, name, price, quantity, threshold, supplierName);
+        inventory.add(product);
+      }
+      System.out.println("Inventory loaded successfully from " + filename);
+    }
+    catch(IOException e) {
+        System.out.println("Error loading file: " + e.getMessage());
+    }
+  } 
 
 }
