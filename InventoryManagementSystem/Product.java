@@ -76,6 +76,10 @@ public class Product {
            "\nSupplier: " + supplierName;
         }
 
+    public boolean isLowStock() {
+    return quantity <= threshold;
+    }
+
         // public static void main(String[] args){            
         //     Product obj1 = new Product(101, "Laptop", 85000, 15, 5, "ABC Traders");   
         //     Product obj2 = new Product(102, "Mouse", 1200, 30, 10, "Logitech");

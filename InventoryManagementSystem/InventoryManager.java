@@ -50,7 +50,7 @@ public class InventoryManager{
     boolean lowStockFound = false;
 
     for(Product product : inventory) {
-      if(product.getQuantity() <= product.getThreshold()) {
+      if (product.isLowStock()) {
         System.out.println(product);
         System.out.println("-----------------------------");
         lowStockFound = true;
@@ -77,12 +77,7 @@ public class InventoryManager{
     }
 
     for(Product product : inventory) {
-      System.out.println("Product ID: " + product.getId());
-      System.out.println("Product Name: " + product.getName());
-      System.out.println("Product Price: " + product.getPrice());
-      System.out.println("Product Quantity: " + product.getQuantity());
-      System.out.println("Product Threshold: " + product.getThreshold());
-      System.out.println("Supplier Name: " + product.getSupplierName());
+      System.out.println(product);
       System.out.println("-----------------------------");
     }
 
@@ -124,7 +119,7 @@ public class InventoryManager{
 
     for (Product product : inventory) {
 
-      if (product.getQuantity() <= product.getThreshold()) {
+      if (product.isLowStock()) {
 
         restockNeeded = true;
 
@@ -197,7 +192,7 @@ public class InventoryManager{
   public void saveToCSV(String filename) {
    try ( FileWriter writer = new FileWriter(filename)){
     for(Product product : inventory){
-      String line = product.getId() + "," + product.getName() + "," + product.getPrice() + "," + product.getQuantity() + "," + product.getThreshold() + "," + product.getSupplierName() + "\n";
+      String line = product.getId() + "," + product.getName() + "," + product.getPrice() + "," + product.getQuantity() + "," + product.getThreshold() + "," + product.getSupplierName();
       writer.write(line);
       writer.write("\n");
     }
