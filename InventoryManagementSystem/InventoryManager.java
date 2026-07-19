@@ -198,7 +198,8 @@ public class InventoryManager{
    try ( FileWriter writer = new FileWriter(filename)){
     for(Product product : inventory){
       String line = product.getId() + "," + product.getName() + "," + product.getPrice() + "," + product.getQuantity() + "," + product.getThreshold() + "," + product.getSupplierName() + "\n";
-      writer.write(line + "\n" );
+      writer.write(line);
+      writer.write("\n");
     }
       System.out.println("Inventory saved successfully to " + filename);
 
