@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
@@ -10,55 +11,59 @@ public class Main {
         manager.addProduct(new Product(104, "Monitor", 20000, 8, 4, "LMN Distributors"));
         manager.addProduct(new Product(105, "Printer", 15000, 12, 6, "PQR Suppliers"));
 
-        System.out.println("===== All Products =====");
-        manager.displayProducts();
+        Scanner sc = new Scanner(System.in);
+        while (true) {
 
-        System.out.println("\n===== Search Product =====");
-
-        Product found = manager.searchProduct(103);
-
-        if (found != null) {
-            System.out.println(found);
-        } else {
-            System.out.println("Product not found.");
+            System.out.println("Inventory Management System");
+            System.out.println("1. Display Inventory");
+            System.out.println("2. Add Product");
+            System.out.println("3. Remove Product");
+            System.out.println("4. Search Product");
+            System.out.println("5. Update Product");
+            System.out.println("6. Generate Restock Report");
+            System.out.println("7. Display Low Stock Products");
+            System.out.println("8. Save Inventory to CSV");
+            System.out.println("9. Load Inventory from CSV");
+            System.out.println("10. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = sc.nextInt();
+            sc.nextLine(); // Consume newline
+            switch (choice) {
+                case 1:
+                    manager.displayProducts();
+                    break;
+                case 2:
+                    // Code to add product
+                    break;
+                case 3:
+                    // Code to remove product
+                    break;
+                case 4:
+                    // Code to search product
+                    break;
+                case 5:
+                    // Code to update product
+                    break;
+                case 6:
+                    manager.generateRestockReport();
+                    break;
+                case 7:
+                    manager.displayLowStock();
+                    break;
+                case 8:
+                    // Code to save inventory to CSV
+                    break;
+                case 9:
+                    // Code to load inventory from CSV
+                    break;
+                
+                case 10:
+                    System.out.println("Exiting.Thank you for using the Inventory Management System.");
+                    sc.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice! Please try again.");
+            }
         }
-
-        System.out.println("\n===== Update Product =====");
-
-        if (manager.updateProduct(102, 1200, 15, 7, "New Supplier")) {
-            System.out.println("Product updated successfully.");
-        } 
-        else {
-            System.out.println("Product not found.");
-        }
-
-
-        
-        System.out.println("\n===== Remove Product =====");
-
-        if (manager.removeProduct(104)) {
-            System.out.println("Product removed successfully.");
-        } 
-        else {
-            System.out.println("Product not found.");
-        }
-
-
-
-        System.out.println("\n===== Updated Inventory =====");
-
-        manager.displayProducts();
-
-        System.out.println("\n===== Low Stock Products =====");
-        manager.displayLowStock();
-
-        System.out.println("\n===== Stock report =====");
-        manager.generateRestockReport();
-
-        System.out.println("\n===== Saving Inventory to File =====");
-        manager.saveToCSV("products.csv");
-
-        System.out.println("\n===== Loading Inventory from File =====");
-        manager.loadFromCSV("products.csv");
-    }
+    }   
 }
