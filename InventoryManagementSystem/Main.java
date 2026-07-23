@@ -34,6 +34,21 @@ public class Main {
                     break;
                 case 2:
                     // Code to add product
+                    Product product = new Product(0, "", 0.0, 0, 0, "");
+                    System.out.print("Enter Product ID: ");
+                    product.setId(sc.nextInt());
+                    sc.nextLine(); // Consume newline
+                    System.out.print("Enter Product Name: ");
+                    product.setName(sc.nextLine());
+                    System.out.print("Enter Product Price: ");
+                    product.setPrice(sc.nextDouble());
+                    sc.nextLine(); // Consume newline
+                    System.out.print("Enter Product Quantity: ");
+                    product.setQuantity(sc.nextInt());
+                    sc.nextLine(); // Consume newline
+                    System.out.print("Enter Supplier Name: ");
+                    product.setSupplierName(sc.nextLine());
+                    manager.addProduct(product);
                     break;
                 case 3:
                     // Code to remove product
