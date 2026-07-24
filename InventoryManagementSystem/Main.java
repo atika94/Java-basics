@@ -34,21 +34,31 @@ public class Main {
                     break;
                 case 2:
                     // Code to add product
-                    Product product = new Product(0, "", 0.0, 0, 0, "");
                     System.out.print("Enter Product ID: ");
-                    product.setId(sc.nextInt());
-                    sc.nextLine(); // Consume newline
+                    int id = sc.nextInt();
+                    sc.nextLine();
+
                     System.out.print("Enter Product Name: ");
-                    product.setName(sc.nextLine());
+                    String name = sc.nextLine();
+
                     System.out.print("Enter Product Price: ");
-                    product.setPrice(sc.nextDouble());
-                    sc.nextLine(); // Consume newline
-                    System.out.print("Enter Product Quantity: ");
-                    product.setQuantity(sc.nextInt());
-                    sc.nextLine(); // Consume newline
+                    double price = sc.nextDouble();
+
+                    System.out.print("Enter Quantity: ");
+                    int quantity = sc.nextInt();
+
+                    System.out.print("Enter Threshold: ");
+                    int threshold = sc.nextInt();
+                    sc.nextLine();
+
                     System.out.print("Enter Supplier Name: ");
-                    product.setSupplierName(sc.nextLine());
+                    String supplier = sc.nextLine();
+
+                    Product product = new Product(id, name, price, quantity, threshold, supplier);
+
                     manager.addProduct(product);
+
+                    System.out.println("Product added successfully.");
                     break;
                 case 3:
                     // Code to remove product
