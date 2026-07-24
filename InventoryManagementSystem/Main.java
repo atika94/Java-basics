@@ -65,9 +65,28 @@ public class Main {
                     break;
                 case 4:
                     // Code to search product
+                    int Id;
+                    System.out.print("Enter Product ID to search: ");
+                    Id = sc.nextInt();
+                    manager.searchProduct(Id);
                     break;
                 case 5:
                     // Code to update product
+                    int id;
+                    System.out.print("Enter Product ID to update: ");
+                    id = sc.nextInt();
+                    sc.nextLine(); // Consume newline
+                    System.out.print("Enter new price: ");
+                    double newprice = sc.nextDouble();
+                    System.out.print("Enter new quantity: ");
+                    int newquantity = sc.nextInt();
+                    System.out.print("Enter new threshold: ");
+                    int newthreshold = sc.nextInt();
+                    sc.nextLine(); // Consume newline
+                    System.out.print("Enter new supplier name: ");
+                    String newsupplier = sc.nextLine();
+                    manager.updateProduct(id, newprice, newquantity, newthreshold, newsupplier);
+                    System.out.println("Product updated successfully.");
                     break;
                 case 6:
                     manager.generateRestockReport();
@@ -77,9 +96,11 @@ public class Main {
                     break;
                 case 8:
                     // Code to save inventory to CSV
+                    manager.saveToCSV("products.csv");
                     break;
                 case 9:
                     // Code to load inventory from CSV
+                    manager.loadFromCSV("products.csv");
                     break;
                 
                 case 10:
